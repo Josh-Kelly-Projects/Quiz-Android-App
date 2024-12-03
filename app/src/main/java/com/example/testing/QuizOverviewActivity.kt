@@ -21,7 +21,7 @@ class QuizOverviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quiz_overveiw)
 
-        //for querying the db and storing the quiz ID
+        //For querying the db and storing the quiz ID
         dbHelper = DatabaseHelper(this)
         val preferencesHelper = PreferencesHelper(applicationContext)
 

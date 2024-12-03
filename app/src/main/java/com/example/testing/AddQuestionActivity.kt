@@ -16,8 +16,8 @@ class AddQuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.questions_form)
 
-        dbHelper = DatabaseHelper(this)
-        val preferencesHelper = PreferencesHelper(applicationContext)
+        dbHelper = DatabaseHelper(this) //Database connection
+        val preferencesHelper = PreferencesHelper(applicationContext) //Session tracker
 
         val quizOverview = findViewById<Button>(R.id.buttonCreateQuestion)
         quizOverview.setOnClickListener {
@@ -28,8 +28,6 @@ class AddQuestionActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.editTextQuizAnswer3).text.toString(),
                 findViewById<TextView>(R.id.editTextQuizAnswer4).text.toString()
             )
-
-
 
             val questionID = dbHelper.insertQuestion(question, answer).toInt()
             val wrongAnswersID: MutableList<Int> = mutableListOf()

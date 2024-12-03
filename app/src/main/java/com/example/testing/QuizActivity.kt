@@ -55,7 +55,7 @@ class QuizActivity : AppCompatActivity() {
 
                         val quiz = quizResource[currentIndex]
                         popQuiz(quiz)
-                        currentIndex++ // Increment the index for the next button press
+                        currentIndex++ //Increment the index for the next button press
                         answerSelected = ""
                         isTypedAns = false
                     }
@@ -68,17 +68,17 @@ class QuizActivity : AppCompatActivity() {
 
                         val containerPic = findViewById<LinearLayout>(R.id.linearLayoutInside)
                         val containerMultiple = findViewById<LinearLayout>(R.id.linearLayoutMultipleChoice)
-                        containerPic.removeAllViews() // Clears the picture container
+                        containerPic.removeAllViews() //Clears the picture container
                         containerMultiple.removeAllViews()
 
                         val quiz = quizResource[currentIndex]
                         popQuiz(quiz)
-                        currentIndex++ // Increment the index for the next button press
+                        currentIndex++ //Increment the index for the next button press
                         answerSelected = ""
                     }
                 }
             } else {
-                //items have all been looped through
+                //Items have all been looped through
                 Toast.makeText(this, "quiz is finished well done" + answersList.toString(), Toast.LENGTH_LONG).show()
                 val intent = Intent(this, WelcomeActivity::class.java)
                 startActivity(intent)
@@ -100,7 +100,7 @@ class QuizActivity : AppCompatActivity() {
         textViewTime.text = "Time remaining: 50s"
 
 
-        //question
+        //Question
         val textViewQuestion = findViewById<TextView>(R.id.textViewQuestion)
         textViewQuestion.text = quiz.questionText
 
@@ -154,7 +154,7 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun setAnswer(selectedButton: TextView) {
-        //reset all the buttons
+        //Reset all the buttons
         for (button in answerButtons) {
             button.setBackgroundColor(Color.TRANSPARENT)
         }

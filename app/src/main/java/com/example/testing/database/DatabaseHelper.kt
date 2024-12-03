@@ -17,7 +17,7 @@ class DatabaseHelper(context: Context) :
 
     override fun onCreate(db: SQLiteDatabase) {
 
-        // Create users table
+        //Create user's table
         db.execSQL(
             """
             CREATE TABLE users (
@@ -35,7 +35,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create quizzes table
+        //Create quizzes table
         db.execSQL(
             """
             CREATE TABLE quizzes (
@@ -46,7 +46,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create pictures table
+        //Create pictures table
         db.execSQL(
             """
             CREATE TABLE pictures (
@@ -57,7 +57,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create questions table
+        //Create questions table
         db.execSQL(
             """
             CREATE TABLE questions (
@@ -68,7 +68,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create wrong_answers table
+        //Create wrong_answers table
         db.execSQL(
             """
             CREATE TABLE wrong_answers (
@@ -78,7 +78,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create quiz_questions table
+        //Create quiz_questions table
         db.execSQL(
             """
             CREATE TABLE quiz_questions (
@@ -100,7 +100,7 @@ class DatabaseHelper(context: Context) :
         """
         )
 
-        // Create coupons table
+        //Create coupons table
         db.execSQL(
             """
             CREATE TABLE coupons (
@@ -129,6 +129,7 @@ class DatabaseHelper(context: Context) :
         )
     }
 
+    //Insert user content
     fun insertUser(
         name: String,
         surname: String,
@@ -160,11 +161,12 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "User added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
     }
 
 
-    //pass the information and the row
+    //Pass the information and the row
     fun updateUserField(userId: Int, fieldName: String, newValue: Any) {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -189,10 +191,11 @@ class DatabaseHelper(context: Context) :
             Log.e("Database", "No rows updated")
         }
 
+        //Close the database connection
         db.close()
     }
 
-    // Example function to fetch all users and log them
+    //Fetch user data
     fun fetchAllUsers() {
         val db: SQLiteDatabase = readableDatabase
         val cursor = db.query(
@@ -214,7 +217,8 @@ class DatabaseHelper(context: Context) :
             }
         }
         cursor.close()
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
     }
 
     fun fetchUser(userID: Int): Users {
@@ -251,6 +255,7 @@ class DatabaseHelper(context: Context) :
 
     }
 
+    //Insert coupons
     fun insertCoupon(userId: Int, couponName: String, couponDetail: String, couponExpiry: String) {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -267,9 +272,11 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "Coupon added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
     }
 
+    //Fetch all coupons based on the user's ID
     fun fetchCouponsByUserID(userID: Int): List<Coupon> {
         val db: SQLiteDatabase = readableDatabase
         val coupons = mutableListOf<Coupon>()
@@ -296,10 +303,13 @@ class DatabaseHelper(context: Context) :
         }
 
         cursor.close()
+        //Close the database connection
         db.close()
+        //Return all the coupons for the user
         return coupons
     }
 
+    //Insert into the menu table
     fun insertMenu(
         itemName: String,
         itemDetail: String,
@@ -323,9 +333,11 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "item added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
     }
 
+    //Fetch the menu items from the database
     fun fetchMenuItems(): List<MenuItem> {
         val db: SQLiteDatabase = readableDatabase
         val menuItems = mutableListOf<MenuItem>()
@@ -340,7 +352,7 @@ class DatabaseHelper(context: Context) :
             "item_name ASC"
         )
 
-        // Iterate over each row in the result
+        //Iterate over each row
         with(cursor) {
             while (moveToNext()) {
                 val itemID = getInt(getColumnIndexOrThrow("itemID"))
@@ -357,10 +369,13 @@ class DatabaseHelper(context: Context) :
             close()
         }
 
+        //Close the database connection
         db.close()
+        //Return the menu items
         return menuItems
     }
 
+    //Insert into the quiz table
     fun insertQuiz(name: String, description: String): Long {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -375,10 +390,12 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "quiz added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
         return newRowId
     }
 
+    //Insert pictures into the database
     fun insertPicture(pictureReference: String, description: String): Long {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -393,10 +410,12 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "pic added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
         return newRowId
     }
 
+    //Insert questions into the database
     fun insertQuestion(question: String, answer: String):Long {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -411,10 +430,12 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "question added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
         return newRowId
     }
 
+    //Insert the wrong answers into the database
     fun insertWrongAnswers(wrongAnswer: String):Long {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -428,36 +449,38 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "question added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        //Close the database connection
+        db.close()
         return newRowId
     }
 
     fun getWrongAnswerId(wrongAnswerText: String): Int {
         val db: SQLiteDatabase = readableDatabase
-        var wrongAnswerId = -1 // Default to -1 if no rows are found
+        var wrongAnswerId = -1  //Default to -1 if no rows are found
 
-        // Query to find the row with the given wrong answer text
+        //Query to find the row with the given wrong answer text
         val cursor = db.query(
-            "wrong_answers",                      // Table name
-            arrayOf("wrong_answer_id"),           // Columns to select
-            "wrong_answer = ?",                   // WHERE clause
-            arrayOf(wrongAnswerText),             // WHERE clause arguments
-            null,                                 // GROUP BY clause
-            null,                                 // HAVING clause
-            null                                  // ORDER BY clause
+            "wrong_answers",
+            arrayOf("wrong_answer_id"),
+            "wrong_answer = ?",
+            arrayOf(wrongAnswerText),
+            null,
+            null,
+            null
         )
 
-        // Check if any rows match the query
+        //Check if any rows match the query
         if (cursor.moveToFirst()) {
             wrongAnswerId = cursor.getInt(cursor.getColumnIndexOrThrow("wrong_answer_id"))
         }
 
-        cursor.close() // Close the cursor to free resources
-        db.close()     // Close the database connection
+        cursor.close()
+        db.close()
 
         return wrongAnswerId
     }
 
+    //Inserts the normalized link table entry
     fun insertQuizQuestions(quizID: Int, questionID: Int, pictureID: Int, wrongAns1ID: Int, wrongAns2ID: Int, wrongAns3ID: Int, questionNumber: Int) {
         val db: SQLiteDatabase = writableDatabase
         val values = ContentValues().apply {
@@ -477,30 +500,30 @@ class DatabaseHelper(context: Context) :
             Log.d("Database", "User added with ID: $newRowId")
         }
 
-        db.close() // Close database connection
+        db.close()
     }
 
     fun getQuestionCount(quizID: Int): Int {
         val db: SQLiteDatabase = readableDatabase
         var questionCount = 0
 
-        // Query to count the number of questions for the given quiz ID
+        //Query to count the number of questions for the given quiz ID
         val cursor = db.rawQuery(
             "SELECT COUNT(*) FROM quiz_questions WHERE quiz_id = ?",
             arrayOf(quizID.toString())
         )
 
         if (cursor.moveToFirst()) {
-            questionCount = cursor.getInt(0) // Get the count from the first column
+            questionCount = cursor.getInt(0) //Get the count from the first column
         }
 
-        cursor.close() // Close the cursor
-        db.close() // Close the database connection
+        cursor.close()
+        db.close()
 
         return questionCount
     }
 
-
+    //Gets all the information for a quiz
     fun getQuizResources(quizID: Int): List<QuizResource> {
         val db: SQLiteDatabase = readableDatabase
         val resources = mutableListOf<QuizResource>()
@@ -515,7 +538,7 @@ class DatabaseHelper(context: Context) :
             "question_number ASC"
         )
 
-        // Iterate over each row in the result and put into the resources object
+        //Iterate over each row in the result and put into the resources object
         with(cursor) {
             while (moveToNext()) {
 
@@ -554,6 +577,7 @@ class DatabaseHelper(context: Context) :
                 }
                 quizCursor.close()
 
+                //Gets the questions
                 val questionCursor = db.query(
                     "questions",
                     arrayOf("question", "answer"),
@@ -571,7 +595,7 @@ class DatabaseHelper(context: Context) :
                 }
                 questionCursor.close()
 
-                //getting the picture reference
+                //Getting the picture reference
                 if (pictureID != -1) {
                     val picCursor = db.query(
                         "pictures",
@@ -582,7 +606,7 @@ class DatabaseHelper(context: Context) :
                         null,
                         null
                     )
-                    //iterate over the picCursor
+                    //Iterate over the picCursor
                     with(picCursor) {
                         while (moveToNext()) {
                             pictureReference = getString(getColumnIndexOrThrow("picture_reference"))
@@ -591,9 +615,9 @@ class DatabaseHelper(context: Context) :
                     pictureUsed = true
                     picCursor.close()
                 }
-                //pic done
+                //Pic done
 
-                //getting the wrong options
+                //Getting the wrong options
                 if (wrong1 != -1) {
                     val wrongIDList: MutableList<Int> = mutableListOf()
                     wrongIDList.add(0, wrong1)
@@ -612,7 +636,7 @@ class DatabaseHelper(context: Context) :
                             null,
                             null
                         )
-                        //iterate over the picCursor
+                        //Iterate over the picCursor
                         with(wrongCursor) {
                             while (moveToNext()) {
                                 wrongTextList.add(
@@ -629,7 +653,7 @@ class DatabaseHelper(context: Context) :
                     multiChoice = true
                 }
 
-                //add the resource that is collected
+                //Add the resource that is collected
                 resources.add(
                     QuizResource(
                         quizId = queriedQuizID,
@@ -652,11 +676,12 @@ class DatabaseHelper(context: Context) :
         return resources
     }
 
+    //Gets all the quizzes
     fun fetchQuizzes(): List<Quiz> {
         val db: SQLiteDatabase = readableDatabase
         val quizzes = mutableListOf<Quiz>()
 
-        // Query to select all quizzes
+        //Query to select all quizzes
         val cursor = db.query(
             "quizzes",
             arrayOf("quiz_id", "name", "description"),
@@ -667,7 +692,7 @@ class DatabaseHelper(context: Context) :
             null
         )
 
-        // Loop through the result set and map each row to a Quiz object
+        //Loop through the result set and map each row to a Quiz object
         if (cursor.moveToFirst()) {
             do {
                 val quizId = cursor.getInt(cursor.getColumnIndexOrThrow("quiz_id"))
@@ -678,27 +703,28 @@ class DatabaseHelper(context: Context) :
                 quizzes.add(quiz)
             } while (cursor.moveToNext())
         }
-        cursor.close() // Close the cursor to free resources
+        cursor.close()
 
         return quizzes
     }
 
+    //Fetches specific quizzes
     fun fetchQuizById(quizId: Int): Quiz? {
         val db: SQLiteDatabase = readableDatabase
         var quiz: Quiz? = null
 
-        // Query to select the quiz with the specified ID
+        //Query to select the quiz with the specified ID
         val cursor = db.query(
-            "quizzes",                             // Table
-            arrayOf("quiz_id", "name", "description"),   // Columns selected
-            "quiz_id = ?",                      // WHERE clause
-            arrayOf(quizId.toString()),                 // WHERE clause arguments
-            null,                               // GROUP BY clause empty
-            null,                                // HAVING clause empty
-            null                                // ORDER BY clause empty
+            "quizzes",
+            arrayOf("quiz_id", "name", "description"),
+            "quiz_id = ?",
+            arrayOf(quizId.toString()),
+            null,
+            null,
+            null
         )
 
-        // If the cursor is not empty, get the quiz data
+        //If the cursor is not empty, get the quiz data
         if (cursor.moveToFirst()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow("quiz_id"))
             val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
@@ -706,14 +732,13 @@ class DatabaseHelper(context: Context) :
 
             quiz = Quiz(id, name, description)
         }
-        cursor.close() // Close the cursor to free resources
+        cursor.close()
 
         return quiz
     }
 
-
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // Drop old tables if they exist
+        //Drop old tables if they exist
         db.execSQL("DROP TABLE IF EXISTS quiz_questions")
         db.execSQL("DROP TABLE IF EXISTS quizzes")
         db.execSQL("DROP TABLE IF EXISTS pictures")

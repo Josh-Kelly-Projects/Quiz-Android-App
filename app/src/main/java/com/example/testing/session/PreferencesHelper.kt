@@ -11,7 +11,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getUserId(): Int {
-        return sharedPreferences.getInt("user_id", -1) // Return -1 if not found
+        return sharedPreferences.getInt("user_id", -1) //Return -1 if not found
     }
 
     fun setLoggedIn(isLoggedIn: Boolean) {
@@ -27,7 +27,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun isAdmin(): Boolean {
-        return sharedPreferences.getBoolean("is_admin", false) // Default to false if not set
+        return sharedPreferences.getBoolean("is_admin", false) //Default to false if not set
     }
 
     fun setName(name: String) {
@@ -35,7 +35,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getName(): String? {
-        return sharedPreferences.getString("name", null) // Return null if not found
+        return sharedPreferences.getString("name", null) //Return null if not found
     }
 
     fun setSurname(surname: String) {
@@ -43,7 +43,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getSurname(): String? {
-        return sharedPreferences.getString("surname", null) // Return null if not found
+        return sharedPreferences.getString("surname", null) //Return null if not found
     }
 
     fun setPreferredName(preferredName: String) {
@@ -51,7 +51,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getPreferredName(): String? {
-        return sharedPreferences.getString("preferred_name", null) // Return null if not found
+        return sharedPreferences.getString("preferred_name", null) //Return null if not found
     }
 
     fun setPhoneNumber(phoneNumber: String) {
@@ -59,7 +59,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getPhoneNumber(): String? {
-        return sharedPreferences.getString("phone_number", null) // Return null if not found
+        return sharedPreferences.getString("phone_number", null) //Return null if not found
     }
 
     fun setUsername(username: String) {
@@ -67,7 +67,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getUsername(): String? {
-        return sharedPreferences.getString("username", null) // Return null if not found
+        return sharedPreferences.getString("username", null) //Return null if not found
     }
 
     fun setPassword(password: String) {
@@ -75,7 +75,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getPassword(): String? {
-        return sharedPreferences.getString("password", null) // Return null if not found
+        return sharedPreferences.getString("password", null) //Return null if not found
     }
 
     fun setBirthDate(birthDate: String) {
@@ -83,7 +83,7 @@ class PreferencesHelper(context: Context) {
     }
 
     fun getBirthDate(): String? {
-        return sharedPreferences.getString("birth_date", null) // Return null if not found
+        return sharedPreferences.getString("birth_date", null) //Return null if not found
     }
 
     fun setLightMode(lightMode: Boolean) {
@@ -91,26 +91,26 @@ class PreferencesHelper(context: Context) {
     }
 
     fun isLightMode(): Boolean {
-        return sharedPreferences.getBoolean("light_mode", false) // Default to false if not set
+        return sharedPreferences.getBoolean("light_mode", false) //Default to false if not set
     }
 
     fun logout() {
-        sharedPreferences.edit().clear().apply() // Clear all preferences
+        sharedPreferences.edit().clear().apply() //Clear all preferences
     }
 
 
-    //quiz section to link the quiz creation to the add question by passing the quiz id through a shared preference
-    // Method to save the current quiz ID
+    //Quiz section to link the quiz creation to the add question by passing the quiz id through a shared preference
+    //Method to save the current quiz ID
     fun setCurrentQuizId(quizId: Int) {
         sharedPreferences.edit().putInt("current_quiz_id", quizId).apply()
     }
 
-    // Method to retrieve the current quiz ID
+    //Method to retrieve the current quiz ID
     fun getCurrentQuizId(): Int {
         return sharedPreferences.getInt("current_quiz_id", -1) // Return -1 if not found
     }
 
-    // Method to clear the current quiz ID when done
+    //Method to clear the current quiz ID when done
     fun clearCurrentQuizId() {
         sharedPreferences.edit().remove("current_quiz_id").apply()
     }
