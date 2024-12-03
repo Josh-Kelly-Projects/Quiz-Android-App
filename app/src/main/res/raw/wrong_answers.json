@@ -1,0 +1,28 @@
+{
+  "wrong_answers": [
+    {
+      "wrongAnswerId": 1,
+      "wrongAnswer": "London"
+    },
+    {
+      "wrongAnswerId": 2,
+      "wrongAnswer": "Berlin"
+    },
+    {
+      "wrongAnswerId": 3,
+      "wrongAnswer": "Madrid"
+    },
+    {
+      "wrongAnswerId": 4,
+      "wrongAnswer": "O2"
+    },
+    {
+      "wrongAnswerId": 5,
+      "wrongAnswer": "CO2"
+    },
+    {
+      "wrongAnswerId": 6,
+      "wrongAnswer": "NaCl"
+    }
+  ]
+}

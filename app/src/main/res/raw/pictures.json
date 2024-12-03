@@ -1,0 +1,14 @@
+{
+  "pictures": [
+    {
+      "pictureId": 1,
+      "pictureReference": "image1.jpg",
+      "description": "A scenic view of mountains."
+    },
+    {
+      "pictureId": 2,
+      "pictureReference": "image2.jpg",
+      "description": "A close-up of a leaf."
+    }
+  ]
+}

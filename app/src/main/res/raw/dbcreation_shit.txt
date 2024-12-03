@@ -1,0 +1,64 @@
+// Create quizzes table
+        db.execSQL(
+            """
+            CREATE TABLE quizzes (
+                quiz_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                description TEXT
+            )
+        """
+        )
+
+        // Create pictures table
+        db.execSQL(
+            """
+            CREATE TABLE pictures (
+                picture_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                picture_reference TEXT NOT NULL,
+                description TEXT
+            )
+        """
+        )
+
+        // Create questions table
+        db.execSQL(
+            """
+            CREATE TABLE questions (
+                question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                question TEXT NOT NULL,
+                answer TEXT NOT NULL
+            )
+        """
+        )
+
+        // Create wrong_answers table
+        db.execSQL(
+            """
+            CREATE TABLE wrong_answers (
+                wrong_answer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                wrong_answer TEXT NOT NULL
+            )
+        """
+        )
+
+        // Create quiz_questions table
+        db.execSQL(
+            """
+            CREATE TABLE quiz_questions (
+                quiz_question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                quiz_id INTEGER NOT NULL,
+                question_id INTEGER NOT NULL,
+                picture_id INTEGER,
+                wrong_answer_1_id INTEGER,
+                wrong_answer_2_id INTEGER,
+                wrong_answer_3_id INTEGER,
+                question_number INTEGER NOT NULL,
+                FOREIGN KEY (quiz_id) REFERENCES quizzes (quiz_id),
+                FOREIGN KEY (question_id) REFERENCES questions (question_id),
+                FOREIGN KEY (picture_id) REFERENCES pictures (picture_id),
+                FOREIGN KEY (wrong_answer_1_id) REFERENCES wrong_answers (wrong_answer_id),
+                FOREIGN KEY (wrong_answer_2_id) REFERENCES wrong_answers (wrong_answer_id),
+                FOREIGN KEY (wrong_answer_3_id) REFERENCES wrong_answers (wrong_answer_id)
+            )
+        """
+        )

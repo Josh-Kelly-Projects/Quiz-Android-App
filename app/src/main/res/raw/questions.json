@@ -1,0 +1,14 @@
+{
+  "questions": [
+    {
+      "questionId": 1,
+      "question": "What is the capital of France?",
+      "answer": "Paris"
+    },
+    {
+      "questionId": 2,
+      "question": "What is the chemical symbol for water?",
+      "answer": "H2O"
+    }
+  ]
+}

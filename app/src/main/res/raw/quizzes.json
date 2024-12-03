@@ -1,0 +1,14 @@
+{
+  "quizzes": [
+    {
+      "quizId": 1,
+      "name": "General Knowledge",
+      "description": "A quiz to test your general knowledge."
+    },
+    {
+      "quizId": 2,
+      "name": "Science Quiz",
+      "description": "Challenge yourself with some science questions."
+    }
+  ]
+}

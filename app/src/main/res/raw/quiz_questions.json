@@ -1,0 +1,22 @@
+{
+  "quiz_questions": [
+    {
+      "quizQuestionId": 1,
+      "quizId": 1,
+      "questionId": 1,
+      "pictureId": 1,
+      "wrongAnswer1Id": 1,
+      "wrongAnswer2Id": 2,
+      "wrongAnswer3Id": 3
+    },
+    {
+      "quizQuestionId": 2,
+      "quizId": 1,
+      "questionId": 2,
+      "pictureId": 2,
+      "wrongAnswer1Id": 4,
+      "wrongAnswer2Id": 5,
+      "wrongAnswer3Id": 6
+    }
+  ]
+}
